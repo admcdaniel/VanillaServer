@@ -26,11 +26,17 @@ cp -fav $topdir/system/VanillaServer.server %{buildroot}%{_unitdir}
 
 
 %files
+%defattr(0775, root, users, 0775)
+%{installdir}
+%{backupdir}
 
 %post
+systemctl enable VanillaServer.service
 
 %preun
+%systemd_preun VanillaServer.service
 
 %postun
+%systemd_postun_with_restart VanillaServer.service
 
 %changelog

@@ -7,7 +7,7 @@ Release: 1
 Summary: Vanilla Minecraft Server
 Vendor: amcdaniel
 
-Requires: crontabs, java-1.8.0-openjdk-headless, screen
+Requires: crontabs, java-latest-openjdk-headless, screen
 
 %description
 Simple vanilla minecraft server install. Systemd service for running server,

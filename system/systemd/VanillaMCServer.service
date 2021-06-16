@@ -1,0 +1,18 @@
+[Unit]
+Description=Vanilla Minecraft Server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/minecraft/server
+User=mc
+Group=mc
+
+ExecStart=/opt/minecraft/scripts/serviceLaunch.sh
+ExecStop=/opt/minecraft/scripts/stopServer.sh
+
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target

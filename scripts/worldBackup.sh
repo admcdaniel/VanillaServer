@@ -3,7 +3,7 @@
 # Filename: worldBackup.sh                                                    
 # Language: Bash
 # Author: amcdaniel <austinmcdaniel70@gmail.com>
-# Last Modified: 16-Jun-2021
+# Last Modified: 09-Aug-2021
 # Description: Shell script for backing up vanilla Minecraft worlds, and 
 #               removing backups older than 7 days.                                                                           
 
@@ -11,6 +11,8 @@
 # Check if mc screen exsits
 if screen -S mc -Q select . ; echo $?; then
 
+    # Create world backup directory if it doesn't exist
+    mkdir -p /var/minecraft/backups/$worldName
 
     # Turn off auto-save, and broadcast backup running
     screen -S mc -p 0 -X stuff "save-off\nsay Server Saving Disabled. Running Backup.\n"
@@ -27,9 +29,6 @@ if screen -S mc -Q select . ; echo $?; then
     sleep 5
     /opt/minecraft/scripts/restartServer.sh
 
-    # Create world backup directory if it doesn't exist
-    mkdir -p /var/minecraft/backups/$worldName
-    
     # Delete backups untill only the last 7 days of backups remain 
     if cd /var/minecraft/backups/$worldName/; then
         while [ $(ls | wc -l) -gt 7 ]; do
